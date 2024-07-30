@@ -1,0 +1,120 @@
+<p *ngIf="isLoading"><em>Loading...</em></p>
+
+<div class="card-container" *ngIf="!isLoading">
+  <mat-card class="latest-launch" appearance="outlined">
+    <mat-card-header class="header-container">
+      <img *ngIf="patchUrl" [src]="patchUrl" alt="Patch" class="patch-image">
+      <div class="title-container">
+        <mat-card-title class="title">Latest launch</mat-card-title>
+        <mat-card-subtitle class="subtitle">Spacex Launch</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="videoUrl" class="video-container">
+      <iframe [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-tab-group>
+      <mat-tab *ngFor="let tab of asyncTabs | async">
+        <ng-template mat-tab-label>{{ tab.label }}</ng-template>
+        <ng-container *ngTemplateOutlet="tab.template"></ng-container>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>
+
+<!-- Overview Template -->
+<ng-template #overviewTemplate>
+  <mat-card-content class="content-container">
+    <mat-list>
+      <mat-list-item>
+        <span mat-line class="bold-text">Flight number:</span>
+        <span mat-line> {{ launch?.flight_number }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Launch name:</span>
+        <span mat-line> {{ launch?.name }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Date launched:</span>
+        <span mat-line> {{ launch?.date_utc | date }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Rocket:</span>
+        <span mat-line> {{ rocket?.name }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Launchpad:</span>
+        <span mat-line> {{ launch?.launchpad }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Mission status:</span>
+        <span mat-line> {{ launch?.success ? 'succeeded' : 'failed' }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</ng-template>
+
+<!-- Rocket Template -->
+<ng-template #rocketTemplate>
+  <mat-card-content class="content-container">
+    <mat-list>
+      <mat-list-item>
+        <span mat-line class="bold-text">Rocket:</span>
+        <span mat-line> {{ rocket?.name }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Boosters: :</span>
+        <span mat-line> {{ rocket?.boosters }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Cost per launch:</span>
+        <span mat-line> {{ rocket?.cost_per_launch }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Success rate:</span>
+        <span mat-line> {{ rocket?.success_rate_pct }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Company:</span>
+        <span mat-line> {{ rocket?.company }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Wikipedia:</span>
+        <span mat-line> {{ rocket?.wikipedia }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span mat-line class="bold-text">Description:</span>
+        <span mat-line> {{ rocket?.description }}</span>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card-content>
+</ng-template>
+
+<ng-template #crewTemplate>
+  <mat-card-content class="content-container">
+    <mat-list *ngFor="let person of crew">
+      <mat-list-item style="height: 10vh;">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+          <div>
+            <div style="display: flex; align-items: center;">
+              <span class="bold-text" style="margin-right: 8px;">Name:</span>
+              <span>{{ person?.name }}</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+              <span class="bold-text" style="margin-right: 8px;">Agency:</span>
+              <span>{{ person?.agency }}</span>
+            </div>
+          </div>
+          <img *ngIf="person?.image" [src]="person?.image" alt="Person Image" style="width: 150px; height: 150px; border-radius: 50%;">
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-card-content>
+</ng-template>

@@ -1,0 +1,66 @@
+<div class="register">
+  <h1>Register</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <p>
+      <mat-error *ngIf="registerResult && !registerResult.success">
+        <strong>ERROR</strong>: {{registerResult.message}}
+      </mat-error>
+    </p>
+
+    <!-- FirstName -->
+    <mat-form-field>
+      <mat-label>First name:</mat-label>
+      <input matInput formControlName="firstName" required
+             placeholder="Insert first name">
+      <mat-error *ngFor="let error of getErrors(form.get('firstName')!,
+   'First name')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- LastName -->
+    <mat-form-field>
+      <mat-label>Last name:</mat-label>
+      <input matInput formControlName="lastName" required
+             placeholder="Insert last name">
+      <mat-error *ngFor="let error of getErrors(form.get('lastName')!,
+   'Last name')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field>
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email" required
+             placeholder="Insert email">
+      <mat-error *ngFor="let error of getErrors(form.get('email')!,
+          'Email')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Pass -->
+    <mat-form-field>
+      <mat-label>Password:</mat-label>
+      <input matInput type="password" formControlName="password" required
+             placeholder="Insert Password">
+      <mat-error *ngFor="let error of getErrors(form.get('password')!,
+      'Password')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <button mat-flat-button color="primary"
+              type="submit">
+        Submit
+      </button>
+      <button mat-flat-button color="secondary"
+              [routerLink]="['/']">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
