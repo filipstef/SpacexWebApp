@@ -1,12 +1,10 @@
 <h1>Upcoming Launches</h1>
 
-<p>Here's a list of upcoming launches: feel free to filter and sort it.</p>
-
 <p *ngIf="isLoading"><em>Loading...</em></p>
 
 <mat-form-field class="name-filter" *ngIf="!isLoading">
   <input matInput #filter (keyup)="onFilterTextChanged(filter.value)" 
-         placeholder="Filter by name (or part of it)...">
+         placeholder="Filter by name">
 </mat-form-field>
 
 <table mat-table [dataSource]="launches"
