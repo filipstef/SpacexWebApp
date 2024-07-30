@@ -18,15 +18,6 @@ export class UpcomingLaunchesService extends BaseService{
   private url = this.getUrl("api/Launches/Upcoming");
 
   getUpcomingLaunches(): Observable<CustomLaunch[]> {
-    return this.http.get<CustomLaunch[]>(this.url).pipe(
-      map(response => response.map(item => ({
-          flight_number: item.flight_number,
-          name: item.name,
-          date_utc: item.date_utc,
-          rocket: item.rocket,
-          launchpad: item.launchpad,
-          links: item.links,
-      } as CustomLaunch)))
-    );
+    return this.http.get<CustomLaunch[]>(this.url);
   }
 }

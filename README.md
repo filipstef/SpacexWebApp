@@ -11,4 +11,3 @@
 2. Navigate to ````SpacexWebApp/spacexwebapp.client```` and run ```` npm install ````
 3. Make sure to configure the startup proj to run multiple startup projects:
 ![alt text](readmeImages/image.png)
-

@@ -18,17 +18,6 @@ export class LaunchService extends BaseService {
   private url = this.getUrl("api/Launches/Latest")
 
   getLatestLaunches(): Observable<CustomLaunch> {
-    return this.http.get<any>(this.url).pipe(
-      map(response => ({
-        flight_number: response.flight_number,
-        name: response.name,
-        date_utc: response.date_utc,
-        rocket: response.rocket,
-        launchpad: response.launchpad.full_name,
-        success: response.success,
-        links: response.links,
-        crew: response.crew
-      } as CustomLaunch))
-    );
+    return this.http.get<CustomLaunch>(this.url);
   }
 }

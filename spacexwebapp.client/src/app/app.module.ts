@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LatestLaunchesComponent } from './latestLaunches/latest-launches.component';
+import { LatestLaunchesComponent } from './latest-launches/latest-launches.component';
 import { RegisterComponent } from './register/register.component';
 import { UpcomingLaunchesComponent } from './upcoming-launches/upcoming-launches.component';
 import { PastLaunchesComponent } from './past-launches/past-launches.component';
